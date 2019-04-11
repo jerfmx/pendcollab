@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="mailSession" class="javax.mail.Session" factory-method="getInstance">
+		<constructor-arg>
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<!-- If SSL needed... -->
+				<prop key="mail.smtp.socketFactory.port">465</prop>
+				<prop key="mail.smtp.socketFactory.class">
+					javax.net.ssl.SSLSocketFactory
+				</prop>
+				<prop key="mail.smtp.socketFactory.fallback">
+					false
+				</prop>
+				<!-- end ssl -->
+			</props>
+		</constructor-arg>
+		<constructor-arg ref="smtpAuthenticator" />
+	</bean>
+
+    <!-- The following are added configurations for Spring Mail Services -->
+    <!-- This is the authenticator, and for a default authentication -->
+    <bean id="smtpAuthenticator" class="pendcolab.SmtpAuthenticator">
+		<constructor-arg value="joseeduardo.razo@upaep.mx" />
+		<constructor-arg value="erf770426" />
+	</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="session" ref="mailSession" />
+	</bean>
+	
+	<bean id="emailerService" class="pendcolab.EmailerService">
+		<property name="mailSender">
+			<ref bean="mailSender"/> 
+		</property>
+	</bean>
+
+	<!-- this is needed for configuration? -->
+	<!-- Make the MultipartResolver available in grails -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize"><value>1000000</value></property>
+	</bean>
+
+</beans>

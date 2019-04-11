@@ -1,0 +1,7 @@
+.git
+target
+*log
+localhost*
+hs*
+dist
+core

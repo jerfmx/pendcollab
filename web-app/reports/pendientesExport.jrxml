@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pendientesExport" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="usuario" class="java.lang.String" isForPrompting="false"/>
+	<field name="categoria" class="pendcolab.Categoria"/>
+	<field name="finalizado" class="java.util.Date"/>
+	<field name="iniciado" class="java.util.Date"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="nota" class="java.lang.String"/>
+	<field name="usuario" class="pendcolab.Usuario"/>
+	<field name="prioridad" class="java.lang.String"/>
+	<field name="estatus" class="java.lang.String"/>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[prioridad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[estatus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[iniciado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="564" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[finalizado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="658" y="0" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[nota]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{prioridad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{estatus}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd hh:mm" isBlankWhenNull="true">
+				<reportElement x="470" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{iniciado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd hh:mm" isBlankWhenNull="true">
+				<reportElement x="564" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{finalizado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="658" y="0" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nota}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
